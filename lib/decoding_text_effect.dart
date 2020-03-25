@@ -122,6 +122,7 @@ enum DecodeEffect {
 }
 
 class DecodingTextEffect extends StatefulWidget {
+
   /// Creates a Decoding Text Effect widget.
   ///
   /// The [decodeEffect] is required and [originalString] must not be `null`.
@@ -149,6 +150,7 @@ class DecodingTextEffect extends StatefulWidget {
   /// This defines what type of decoding effect will be performed on `originalString`.
   final DecodeEffect decodeEffect;
 
+  /// TextStyle for text in `DecodingTextEffect` widget.
   final TextStyle textStyle;
 
   /// This defines the rate at which decoding effect will be performed, the speed of effect
@@ -166,6 +168,8 @@ class DecodingTextEffect extends StatefulWidget {
   ///
   /// Note: In `DecodeEffect.all` the whole string is considered as a single character.
   final int eachCount;
+
+  /// TextAlign for text in `DecodingTextEffect` widget.
   final TextAlign textAlign;
 
   @override
@@ -336,11 +340,11 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             timer.cancel();
           } else {
             _temp = '';
-            for (int _i = 0; _i < _length; _i++) {
-              if (_indexList[_i] == -1) {
-                _temp += _originalString[_i];
+            for (int i = 0; i < _length; i++) {
+              if (_indexList[i] == -1) {
+                _temp += _originalString[i];
               } else {
-                _temp += _getRandomChar(_originalString.codeUnitAt(_i));
+                _temp += _getRandomChar(_originalString.codeUnitAt(i));
               }
             }
             _currentString = _temp;
