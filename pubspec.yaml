@@ -1,7 +1,6 @@
 name: decoding_text_effect
 description: A Flutter package that creates DecodingTextEffect widget. 
 version: 1.0.0
-author: Aadarsh Patel <patelaadarsh0@gmail.com>
 homepage: https://github.com/aadarsh-patel/decoding_text_effect
 
 environment:
