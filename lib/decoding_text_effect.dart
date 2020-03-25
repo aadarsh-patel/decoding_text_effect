@@ -162,7 +162,7 @@ class DecodingTextEffect extends StatefulWidget {
   final Duration refreshDuration;
 
   /// This defines the number of random characters will be shown before showing the actual character
-  /// for every character of the `originalString`.
+  /// for every character in the `originalString`.
   ///
   /// It has a default value of `5`.
   ///
