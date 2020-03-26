@@ -44,6 +44,28 @@ Now in your `Dart` code, you can use:
 import 'package:decoding_text_effect/decoding_text_effect.dart';
 ```
 
+# Documentation
+
+Decoding effects occurs only for following two cases,
+1. When the widget is rendered for the very first time.
+2. When the value of `originalString` parameter gets changed.
+
+```dart
+DecodingTextEffect(
+   this.originalString, {
+   @required this.decodeEffect,
+   Key key,
+   this.textStyle,
+   this.eachCount = 5,
+   this.refreshDuration,
+   this.textAlign,
+})  : assert(
+         originalString != null,
+         'A non-null String must be provided to a Decoding Text Effect Widget.',
+      ),
+      super(key: key);
+```
+
 # Usage
 
 ```dart
@@ -158,6 +180,6 @@ Source code of the below app is available in the example directory of this packa
 
 <img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/demo_app.gif?raw=true" height = "400px">
 
-Below is an another demonstration of DecoratingTextEffect widget. But the source code of below app is not in this repository.
+Below are some another demonstration of DecoratingTextEffect widget. But the source code of below apps are not in this repository.
 
 <img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/real_application.gif?raw=true" height = "400px">
