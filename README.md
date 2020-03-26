@@ -185,8 +185,3 @@ Below are some another demonstration of DecoratingTextEffect widget. But the sou
 |   |   |
 |---|---|
 |<img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/real_application.gif?raw=true" height = "400px"> | <img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/matrix.gif?raw=true" height = "400px"> |
-
-
-### Github repository
-
-For changelog and more visit to the package's <a href = 'https://github.com/aadarsh-patel/decoding_text_effect'>github repository </a>.
