@@ -155,17 +155,13 @@ class DecodingTextEffect extends StatefulWidget {
 
   /// This defines the rate at which decoding effect will be performed, the speed of effect
   /// gets faster as the value of [refreshDuration] gets smaller.
-  ///
-  /// It has a default value of `Duration(milliseconds: 60)`.
-  ///
-  /// It is also the duration gap between any two consecutive `setState()` calls of the widget.
+  /// It has a default value of `Duration(milliseconds: 60)`. It is also the duration gap between
+  /// any two consecutive `setState()` calls of the widget.
   final Duration refreshDuration;
 
   /// This defines the number of random characters will be shown before showing the actual character
   /// for every character in the `originalString`.
-  ///
   /// It has a default value of `5`.
-  ///
   /// Note: In `DecodeEffect.all` the whole string is considered as a single character.
   final int eachCount;
 
@@ -266,7 +262,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             _currentString = _originalString;
             timer.cancel();
           } else {
-            for (int i = 0; i < _index; i++) {
+            for (int i = 0; i <= _index; i++) {
               _currentString = _currentString.substring(0, i) +
                   _getRandomChar(_currentString.codeUnitAt(i)) +
                   _currentString.substring(i + 1);
