@@ -144,3 +144,20 @@ Container(
    ),
 ),
 ```
+
+## refreshDuration and eachCount
+
+The `refreshDuration` is an optional argument that is having a default value of `Duration(milliseconds: 60)`.
+Shorter the value refreshDuration, faster will be the effect and hence decreasing the duration of effect. `refreshDuration` is also the time gap between two consecutive `setState()` function calls.
+
+The `eachCount` is also an optional argument that is having a default value of `5`. It is the number of random characters that will be shown before showing the original character and then moving on to decode next character and this cycles repeat until the completion of effect.
+
+# Demo
+
+Source code of the below app is available in the example directory of this package's github repository.
+
+<img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/demo_app.gif?raw=true" height = "400px">
+
+Below is an another demonstration of DecoratingTextEffect widget. But the source code of below app is not in this repository.
+
+<img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/real_application.gif?raw=true" height = "400px">
