@@ -16,14 +16,7 @@
       alt="License: BSD" />  
   </a>  
 </div>
-<br>
-
-# Table of contents  
-
- * [Installing](#installing)
- * [Usage](#usage)
- 
- 
+<br> 
  
  # Installing
 
@@ -52,6 +45,15 @@ import 'package:decoding_text_effect/decoding_text_effect.dart';
 ```
 
 # Usage
+
+```dart
+List<String> myText = [
+   'Decoding Text\nEffect',
+   'Welcome to\nthe Dart Side!',
+   'I have 50\nwatermelons',
+   'Quick Maths,\n2 + 2 = 4'
+  ];
+```
 
 ## 1. DecodeEffect.fromStart
 
