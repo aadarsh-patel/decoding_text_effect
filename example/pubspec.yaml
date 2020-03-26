@@ -8,14 +8,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  decoding_text_effect:
+    path: ../
 
   cupertino_icons: ^0.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  decoding_text_effect:
-    path: ../
 
 flutter:
   uses-material-design: true
