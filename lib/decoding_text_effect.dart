@@ -273,7 +273,8 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
               if (_count == _eachCount) {
                 _count = 0;
                 _index += 1;
-                _currentString = _originalString.substring(0, _index) + _currentString.substring(_index);
+                _currentString = _originalString.substring(0, _index) +
+                    _currentString.substring(_index);
               }
             });
           }
@@ -297,7 +298,8 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             _count += 1;
             if (_count == _eachCount) {
               _count = 0;
-              _currentString = _currentString.substring(0, _index) + _originalString.substring(_index);
+              _currentString = _currentString.substring(0, _index) +
+                  _originalString.substring(_index);
               _index -= 1;
             }
           }
@@ -337,7 +339,9 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             for (int i = _head; i < _tail; i++) {
               _temp += _getRandomChar(_currentString.codeUnitAt(i));
             }
-            _currentString = _originalString.substring(0, _head) + _temp + _originalString.substring(_tail);
+            _currentString = _originalString.substring(0, _head) +
+                _temp +
+                _originalString.substring(_tail);
 
             _count += 1;
             if (_count == _eachCount) {
