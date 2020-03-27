@@ -136,6 +136,8 @@ class DecodingTextEffect extends StatefulWidget {
     this.eachCount = 5,
     this.refreshDuration,
     this.textAlign,
+    this.onTap,
+    this.onFinished,
   })  : assert(
           originalString != null,
           'A non-null String must be provided to a Decoding Text Effect Widget.',
@@ -166,6 +168,12 @@ class DecodingTextEffect extends StatefulWidget {
 
   /// TextAlign for text in `DecodingTextEffect` widget.
   final TextAlign textAlign;
+
+  /// Adds the onTap [VoidCallback] to the Decoding Text Effect widget.
+  final VoidCallback onTap;
+
+  /// Adds the onFinished [VoidCallback] to the Decoding Text Effect widget.
+  final VoidCallback onFinished;
 
   @override
   _DecodingTextEffectState createState() => _DecodingTextEffectState();
@@ -206,6 +214,18 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
     return _result;
   }
 
+  void _onTap() {
+    if (widget.onTap != null) {
+      widget.onTap();
+    }
+  }
+
+  void _onFinished() {
+    if (widget.onFinished != null) {
+      widget.onFinished();
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -234,6 +254,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
           if (_index == _length) {
             _currentString = _originalString;
             timer.cancel();
+            _onFinished();
           } else {
             setState(() {
               for (int i = _index; i < _length; i++) {
@@ -260,6 +281,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
           if (_index == -1) {
             _currentString = _originalString;
             timer.cancel();
+            _onFinished();
           } else {
             for (int i = 0; i <= _index; i++) {
               _currentString = _currentString.substring(0, i) +
@@ -290,6 +312,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
           if (_count == _eachCount) {
             _currentString = _originalString;
             timer.cancel();
+            _onFinished();
           }
         });
       });
@@ -303,6 +326,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
           if (_head >= _tail) {
             _currentString = _originalString;
             timer.cancel();
+            _onFinished();
           } else {
             _temp = '';
             for (int i = _head; i < _tail; i++) {
@@ -333,6 +357,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
           if (_index == _length) {
             _currentString = _originalString;
             timer.cancel();
+            _onFinished();
           } else {
             _temp = '';
             for (int i = 0; i < _length; i++) {
@@ -370,10 +395,13 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
       _startDecoding();
     }
 
-    return Text(
-      _currentString,
-      style: widget.textStyle,
-      textAlign: widget.textAlign,
+    return GestureDetector(
+      onTap: _onTap,
+      child: Text(
+        _currentString,
+        style: widget.textStyle,
+        textAlign: widget.textAlign,
+      ),
     );
   }
 }
