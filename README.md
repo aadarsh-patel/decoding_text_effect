@@ -3,7 +3,7 @@
 <h3><div align="center">This flutter package contains a widget called DecodingTextEffect which is having some cool Decode Effects for texts.</div><br></h3>
 
 <div align="center">  
-   <a href="https://flutter.io">  
+   <a href="https://flutter.dev">  
     <img src="https://img.shields.io/badge/Platform-Flutter-yellow.svg"  
       alt="Platform" />  
   </a>  
@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/pub/v/decoding_text_effect.svg"  
       alt="Pub Package" />  
   </a>  
-   <a href="https://opensource.org/licenses/BSD-3-Clause">  
+   <a href="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/LICENSE">  
     <img src="https://img.shields.io/github/license/aadarsh-patel/decoding_text_effect"  
       alt="License: BSD" />  
   </a>  
@@ -170,7 +170,7 @@ Container(
 ## refreshDuration and eachCount
 
 The `refreshDuration` is an optional argument that is having a default value of `Duration(milliseconds: 60)`.
-Shorter the value refreshDuration, faster will be the effect and hence decreasing the duration of effect. `refreshDuration` is also the time gap between two consecutive `setState()` function calls.
+Shorter the value of refreshDuration, faster will be the effect and hence decreasing the duration of effect. `refreshDuration` is also the time gap between two consecutive `setState()` function calls.
 
 The `eachCount` is also an optional argument that is having a default value of `5`. It is the number of random characters that will be shown before showing the original character and then moving on to decode next character and this cycles repeat until the completion of effect.
 
@@ -180,7 +180,7 @@ Source code of the below app is available in the example directory of this packa
 
 <img src="https://github.com/aadarsh-patel/decoding_text_effect/blob/master/example/display/demo_app.gif?raw=true" height = "400px">
 
-Below are some another demonstration of DecoratingTextEffect widget. But the source code of below apps are not in this repository.
+Below are some other demonstration of DecoratingTextEffect widget. But the source code of below apps are not in this repository.
 
 |   |   |
 |---|---|
