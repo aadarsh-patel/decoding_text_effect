@@ -395,6 +395,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
       if (_refreshDuration == null) {
         _refreshDuration = _defaultRefreshDuration;
       }
+      _timer.cancel();
       _startDecoding();
     }
 
