@@ -1,6 +1,6 @@
 // Copyright (c) 2020, Aadarsh Patel
 // All rights reserved.
-// This source code is licensed under the BSD-style license found in the LICENSE file in the root directory of this source tree. 
+// This source code is licensed under the BSD-style license found in the LICENSE file in the root directory of this source tree.
 
 library decoding_text_effect;
 
@@ -122,7 +122,6 @@ enum DecodeEffect {
 }
 
 class DecodingTextEffect extends StatefulWidget {
-
   /// Creates a Decoding Text Effect widget.
   ///
   /// The [decodeEffect] is required and [originalString] must not be `null`.
