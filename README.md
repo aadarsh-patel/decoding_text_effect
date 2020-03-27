@@ -56,14 +56,16 @@ DecodingTextEffect(
    @required this.decodeEffect,
    Key key,
    this.textStyle,
-   this.eachCount = 5,
-   this.refreshDuration,
    this.textAlign,
-})  : assert(
+   this.refreshDuration,
+   this.eachCount = 5,
+   this.onTap,
+   this.onFinished,
+  })  : assert(
          originalString != null,
          'A non-null String must be provided to a Decoding Text Effect Widget.',
-      ),
-      super(key: key);
+        ),
+        super(key: key);
 ```
 
 # Usage

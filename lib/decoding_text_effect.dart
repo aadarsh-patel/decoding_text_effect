@@ -133,9 +133,9 @@ class DecodingTextEffect extends StatefulWidget {
     @required this.decodeEffect,
     Key key,
     this.textStyle,
-    this.eachCount = 5,
-    this.refreshDuration,
     this.textAlign,
+    this.refreshDuration,
+    this.eachCount = 5,
     this.onTap,
     this.onFinished,
   })  : assert(
