@@ -188,6 +188,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
   DecodeEffect _effect;
   Duration _refreshDuration;
   Duration _defaultRefreshDuration = Duration(milliseconds: 60);
+  Timer _timer;
 
   String _getRandomChar(int codePoint) {
     if (codePoint >= 48 && codePoint <= 57) {
@@ -245,11 +246,17 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
     _startDecoding();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _timer?.cancel();
+  }
+
   void _startDecoding() async {
     if (_effect == DecodeEffect.fromStart) {
       int _index = 0;
       int _count = 0;
-      Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration, (timer) {
         setState(() {
           if (_index == _length) {
             _currentString = _originalString;
@@ -266,8 +273,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
               if (_count == _eachCount) {
                 _count = 0;
                 _index += 1;
-                _currentString = _originalString.substring(0, _index) +
-                    _currentString.substring(_index);
+                _currentString = _originalString.substring(0, _index) + _currentString.substring(_index);
               }
             });
           }
@@ -276,7 +282,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
     } else if (_effect == DecodeEffect.fromEnd) {
       int _index = _length - 1;
       int _count = 0;
-      Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration, (timer) {
         setState(() {
           if (_index == -1) {
             _currentString = _originalString;
@@ -291,8 +297,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             _count += 1;
             if (_count == _eachCount) {
               _count = 0;
-              _currentString = _currentString.substring(0, _index) +
-                  _originalString.substring(_index);
+              _currentString = _currentString.substring(0, _index) + _originalString.substring(_index);
               _index -= 1;
             }
           }
@@ -301,7 +306,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
     } else if (_effect == DecodeEffect.all) {
       String _temp;
       int _count = 0;
-      Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration, (timer) {
         setState(() {
           _temp = '';
           for (int i = 0; i < _length; i++) {
@@ -321,7 +326,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
       int _tail = _length - 1;
       String _temp;
       int _count = 0;
-      Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration, (timer) {
         setState(() {
           if (_head >= _tail) {
             _currentString = _originalString;
@@ -332,9 +337,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             for (int i = _head; i < _tail; i++) {
               _temp += _getRandomChar(_currentString.codeUnitAt(i));
             }
-            _currentString = _originalString.substring(0, _head) +
-                _temp +
-                _originalString.substring(_tail);
+            _currentString = _originalString.substring(0, _head) + _temp + _originalString.substring(_tail);
 
             _count += 1;
             if (_count == _eachCount) {
@@ -352,7 +355,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
       _shuffledList.shuffle();
       int _count = 0;
       String _temp;
-      Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration, (timer) {
         setState(() {
           if (_index == _length) {
             _currentString = _originalString;
