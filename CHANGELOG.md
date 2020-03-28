@@ -1,3 +1,7 @@
+## [1.1.1]
+
+* Documentation update
+
 ## [1.1.0]
 
 * New feature: Added onTap and onFinished callback
