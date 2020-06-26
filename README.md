@@ -25,7 +25,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  decoding_text_effect: ^1.0.0
+  decoding_text_effect: ^1.1.1
 ```
 
 ### 2. Install it
