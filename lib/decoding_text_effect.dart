@@ -130,19 +130,15 @@ class DecodingTextEffect extends StatefulWidget {
   /// [eachCount] argument has a default value of `5`.
   DecodingTextEffect(
     this.originalString, {
-    @required this.decodeEffect,
-    Key key,
+    required this.decodeEffect,
+    Key? key,
     this.textStyle,
     this.textAlign,
     this.refreshDuration,
     this.eachCount = 5,
     this.onTap,
     this.onFinished,
-  })  : assert(
-          originalString != null,
-          'A non-null String must be provided to a Decoding Text Effect Widget.',
-        ),
-        super(key: key);
+  }) : super(key: key);
 
   /// The string on which decoding effect will be performed and then displayed on
   /// `DecodingTextEffect` widget.
@@ -152,13 +148,13 @@ class DecodingTextEffect extends StatefulWidget {
   final DecodeEffect decodeEffect;
 
   /// TextStyle for text in `DecodingTextEffect` widget.
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
 
   /// This defines the rate at which decoding effect will be performed, the speed of effect
   /// gets faster as the value of [refreshDuration] gets smaller.
   /// It has a default value of `Duration(milliseconds: 60)`. It is also the duration gap between
   /// any two consecutive `setState()` calls of the widget.
-  final Duration refreshDuration;
+  final Duration? refreshDuration;
 
   /// This defines the number of random characters will be shown before showing the actual character
   /// for every character in the `originalString`.
@@ -167,28 +163,28 @@ class DecodingTextEffect extends StatefulWidget {
   final int eachCount;
 
   /// TextAlign for text in `DecodingTextEffect` widget.
-  final TextAlign textAlign;
+  final TextAlign? textAlign;
 
   /// Adds the onTap [VoidCallback] to the Decoding Text Effect widget.
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   /// Adds the onFinished [VoidCallback] to the Decoding Text Effect widget.
-  final VoidCallback onFinished;
+  final VoidCallback? onFinished;
 
   @override
   _DecodingTextEffectState createState() => _DecodingTextEffectState();
 }
 
 class _DecodingTextEffectState extends State<DecodingTextEffect> {
-  int _length;
-  int _eachCount;
-  Random _random;
-  String _originalString;
-  String _currentString;
-  DecodeEffect _effect;
-  Duration _refreshDuration;
+  int? _length;
+  int? _eachCount;
+  late Random _random;
+  String? _originalString;
+  String? _currentString;
+  DecodeEffect? _effect;
+  Duration? _refreshDuration;
   Duration _defaultRefreshDuration = Duration(milliseconds: 60);
-  Timer _timer;
+  Timer? _timer;
 
   String _getRandomChar(int codePoint) {
     if (codePoint >= 48 && codePoint <= 57) {
@@ -209,21 +205,21 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
 
   String _getInitialString() {
     String _result = '';
-    for (int i = 0; i < _length; i++) {
-      _result += _getRandomChar(_originalString.codeUnitAt(i));
+    for (int i = 0; i < _length!; i++) {
+      _result += _getRandomChar(_originalString!.codeUnitAt(i));
     }
     return _result;
   }
 
   void _onTap() {
     if (widget.onTap != null) {
-      widget.onTap();
+      widget.onTap!();
     }
   }
 
   void _onFinished() {
     if (widget.onFinished != null) {
-      widget.onFinished();
+      widget.onFinished!();
     }
   }
 
@@ -256,7 +252,7 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
     if (_effect == DecodeEffect.fromStart) {
       int _index = 0;
       int _count = 0;
-      _timer = Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration!, (timer) {
         setState(() {
           if (_index == _length) {
             _currentString = _originalString;
@@ -264,26 +260,26 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             _onFinished();
           } else {
             setState(() {
-              for (int i = _index; i < _length; i++) {
-                _currentString = _currentString.substring(0, i) +
-                    _getRandomChar(_currentString.codeUnitAt(i)) +
-                    _currentString.substring(i + 1);
+              for (int i = _index; i < _length!; i++) {
+                _currentString = _currentString!.substring(0, i) +
+                    _getRandomChar(_currentString!.codeUnitAt(i)) +
+                    _currentString!.substring(i + 1);
               }
               _count += 1;
               if (_count == _eachCount) {
                 _count = 0;
                 _index += 1;
-                _currentString = _originalString.substring(0, _index) +
-                    _currentString.substring(_index);
+                _currentString = _originalString!.substring(0, _index) +
+                    _currentString!.substring(_index);
               }
             });
           }
         });
       });
     } else if (_effect == DecodeEffect.fromEnd) {
-      int _index = _length - 1;
+      int _index = _length! - 1;
       int _count = 0;
-      _timer = Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration!, (timer) {
         setState(() {
           if (_index == -1) {
             _currentString = _originalString;
@@ -291,15 +287,15 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             _onFinished();
           } else {
             for (int i = 0; i <= _index; i++) {
-              _currentString = _currentString.substring(0, i) +
-                  _getRandomChar(_currentString.codeUnitAt(i)) +
-                  _currentString.substring(i + 1);
+              _currentString = _currentString!.substring(0, i) +
+                  _getRandomChar(_currentString!.codeUnitAt(i)) +
+                  _currentString!.substring(i + 1);
             }
             _count += 1;
             if (_count == _eachCount) {
               _count = 0;
-              _currentString = _currentString.substring(0, _index) +
-                  _originalString.substring(_index);
+              _currentString = _currentString!.substring(0, _index) +
+                  _originalString!.substring(_index);
               _index -= 1;
             }
           }
@@ -308,11 +304,11 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
     } else if (_effect == DecodeEffect.all) {
       String _temp;
       int _count = 0;
-      _timer = Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration!, (timer) {
         setState(() {
           _temp = '';
-          for (int i = 0; i < _length; i++) {
-            _temp += _getRandomChar(_originalString.codeUnitAt(i));
+          for (int i = 0; i < _length!; i++) {
+            _temp += _getRandomChar(_originalString!.codeUnitAt(i));
           }
           _currentString = _temp;
           _count += 1;
@@ -325,10 +321,10 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
       });
     } else if (_effect == DecodeEffect.toMiddle) {
       int _head = 0;
-      int _tail = _length - 1;
+      int _tail = _length! - 1;
       String _temp;
       int _count = 0;
-      _timer = Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration!, (timer) {
         setState(() {
           if (_head >= _tail) {
             _currentString = _originalString;
@@ -337,11 +333,11 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
           } else {
             _temp = '';
             for (int i = _head; i < _tail; i++) {
-              _temp += _getRandomChar(_currentString.codeUnitAt(i));
+              _temp += _getRandomChar(_currentString!.codeUnitAt(i));
             }
-            _currentString = _originalString.substring(0, _head) +
+            _currentString = _originalString!.substring(0, _head) +
                 _temp +
-                _originalString.substring(_tail);
+                _originalString!.substring(_tail);
 
             _count += 1;
             if (_count == _eachCount) {
@@ -353,13 +349,13 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
         });
       });
     } else if (_effect == DecodeEffect.random) {
-      List _indexList = Iterable<int>.generate(_length).toList();
-      List _shuffledList = Iterable<int>.generate(_length).toList();
+      List _indexList = Iterable<int>.generate(_length!).toList();
+      List _shuffledList = Iterable<int>.generate(_length!).toList();
       int _index = 0;
       _shuffledList.shuffle();
       int _count = 0;
       String _temp;
-      _timer = Timer.periodic(_refreshDuration, (timer) {
+      _timer = Timer.periodic(_refreshDuration!, (timer) {
         setState(() {
           if (_index == _length) {
             _currentString = _originalString;
@@ -367,11 +363,11 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
             _onFinished();
           } else {
             _temp = '';
-            for (int i = 0; i < _length; i++) {
+            for (int i = 0; i < _length!; i++) {
               if (_indexList[i] == -1) {
-                _temp += _originalString[i];
+                _temp += _originalString![i];
               } else {
-                _temp += _getRandomChar(_originalString.codeUnitAt(i));
+                _temp += _getRandomChar(_originalString!.codeUnitAt(i));
               }
             }
             _currentString = _temp;
@@ -399,14 +395,14 @@ class _DecodingTextEffectState extends State<DecodingTextEffect> {
       if (_refreshDuration == null) {
         _refreshDuration = _defaultRefreshDuration;
       }
-      _timer.cancel();
+      _timer!.cancel();
       _startDecoding();
     }
 
     return GestureDetector(
       onTap: _onTap,
       child: Text(
-        _currentString,
+        _currentString!,
         style: widget.textStyle,
         textAlign: widget.textAlign,
       ),

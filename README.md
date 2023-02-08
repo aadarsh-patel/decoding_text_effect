@@ -25,7 +25,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  decoding_text_effect: ^1.1.1
+  decoding_text_effect: ^latest
 ```
 
 ### 2. Install it
@@ -51,21 +51,17 @@ Decoding effects occurs only for following two cases,
 2. When the value of `originalString` parameter gets changed.
 
 ```dart
-DecodingTextEffect(
-   this.originalString, {
-   @required this.decodeEffect,
-   Key key,
-   this.textStyle,
-   this.textAlign,
-   this.refreshDuration,
-   this.eachCount = 5,
-   this.onTap,
-   this.onFinished,
-  })  : assert(
-         originalString != null,
-         'A non-null String must be provided to a Decoding Text Effect Widget.',
-        ),
-        super(key: key);
+  DecodingTextEffect(
+    this.originalString, {
+    required this.decodeEffect,
+    Key? key,
+    this.textStyle,
+    this.textAlign,
+    this.refreshDuration,
+    this.eachCount = 5,
+    this.onTap,
+    this.onFinished,
+  }) : super(key: key);
 ```
 
 # Usage

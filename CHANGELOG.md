@@ -1,3 +1,7 @@
+## [1.1.2]
+
+* Miragate to Null-Safty
+
 ## [1.1.1]
 
 * Documentation update
